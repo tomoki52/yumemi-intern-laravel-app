@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/first', \App\Http\Controllers\GetFirstController::class);
+Route::get('/company', \App\Http\Controllers\GetCompanyController::class);
