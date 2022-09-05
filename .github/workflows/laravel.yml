@@ -19,12 +19,7 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
-      run: docker run --rm \
-          -u "$(id -u):$(id -g)" \
-          -v $(pwd):/var/www/html \
-          -w /var/www/html \
-          laravelsail/php81-composer:latest \
-          composer install --ignore-platform-reqs
+      run: docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/var/www/html -w /var/www/html laravelsail/php81-composer:latest composer install --ignore-platform-reqs
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
