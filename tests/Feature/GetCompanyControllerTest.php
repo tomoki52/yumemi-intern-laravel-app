@@ -19,6 +19,6 @@ class GetCompanyControllerTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertJsonFragment(['company' => 'yumemi',]);
+        $response->assertExactJson(['company' => 'yumemi',]);
     }
 }
