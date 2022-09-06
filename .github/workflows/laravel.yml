@@ -27,7 +27,13 @@ jobs:
       - name: generate key
         run: ./vendor/bin/sail artisan key:generate
         
-      - name: migration
+      - name: clear cache
+        run: ./vendor/bin/sail artisan cache:clear
+        
+      - name: clear config
+        run: ./vendor/bin/sail artisan config:clear
+        
+      - name: migrate
         run: ./vendor/bin/sail artisan migrate
       - name: test
         run: ./vendor/bin/sail test
