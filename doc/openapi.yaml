@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: l0eb9jvut2sqe
 info:
   title: openapi
   version: '1.0'
@@ -45,13 +43,18 @@ components:
   schemas:
     User:
       title: User
-      x-stoplight:
-        id: j7mvch9mlep5w
       type: object
       properties:
         name:
           type: string
+          description: ユーザー名
         email:
           type: string
+          description: メールアドレス
         password:
           type: string
+          description: パスワード
+      required:
+        - name
+        - email
+        - password
