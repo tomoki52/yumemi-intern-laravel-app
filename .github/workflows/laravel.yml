@@ -15,16 +15,22 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
 
       - name: composer install
         run: docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/var/www/html -w /var/www/html laravelsail/php81-composer:latest composer install --ignore-platform-reqs
+
+      - name: start mysql
+        run: ./vendor/bin/sail up -d mysql
 
       - name: start
         run: ./vendor/bin/sail up -d
 
       - name: generate key
         run: ./vendor/bin/sail artisan key:generate
+
+      - name: migrate
+        run: ./vendor/bin/sail artisan migrate
 
       - name: test
         run: ./vendor/bin/sail test
