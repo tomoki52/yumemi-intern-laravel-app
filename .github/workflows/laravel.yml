@@ -19,12 +19,14 @@ jobs:
 
       - name: composer install
         run: docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/var/www/html -w /var/www/html laravelsail/php81-composer:latest composer install --ignore-platform-reqs
-
+      - name: start mysql
+        run: ./vendor/bin/sail up -d mysql
       - name: start
         run: ./vendor/bin/sail up -d
 
       - name: generate key
         run: ./vendor/bin/sail artisan key:generate
+        
       - name: migration
         run: ./vendor/bin/sail artisan migrate
       - name: test
