@@ -1,0 +1,57 @@
+openapi: 3.1.0
+x-stoplight:
+  id: l0eb9jvut2sqe
+info:
+  title: openapi
+  version: '1.0'
+servers:
+  - url: 'http://localhost'
+paths:
+  /api/user:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-user
+    post:
+      summary: User
+      operationId: post-user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+    parameters: []
+components:
+  schemas:
+    User:
+      title: User
+      x-stoplight:
+        id: j7mvch9mlep5w
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
