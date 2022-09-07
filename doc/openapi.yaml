@@ -62,8 +62,6 @@ paths:
                 required:
                   - token
               examples: {}
-        '201':
-          description: Created
         '400':
           description: Bad Request
         '401':
