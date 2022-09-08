@@ -16,6 +16,28 @@ class UserControllerTest extends TestCase
      *
      * @return void
      */
+    use RefreshDatabase;
+
+    public function test_user_create()
+    {
+        Spectator::using('openapi.yaml');
+        $test_data = [
+            'name' => 'sample',
+            'email' => 'sample@example.com',
+            'password' => 'password',
+        ];
+        $expected = [
+            'name' => 'sample',
+            'email' => 'sample@example.com',
+        ];
+        $response = $this->postJson('/api/user', $test_data);
+        $this->assertDatabaseHas('users', $expected);
+
+        $response
+            ->assertValidRequest()
+            ->assertValidResponse(ResponseCode::HTTP_OK);
+    }
+
     public function test_user_login()
     {
         Spectator::using('openapi.yaml');
@@ -41,28 +63,6 @@ class UserControllerTest extends TestCase
 
     }
 
-    use RefreshDatabase;
 
-    public function test_user_create()
-    {
-        Spectator::using('openapi.yaml');
-        $test_data = [
-            'name' => 'sample',
-            'email' => 'sample@example.com',
-            'password' => 'password',
-        ];
-        $expected = [
-            'name' => 'sample',
-            'email' => 'sample@example.com',
-        ];
-        $response = $this->postJson('/api/user', $test_data);
-        $this->assertDatabaseHas('users', $expected);
-
-        $response
-            ->assertStatus(ResponseCode::HTTP_OK)
-            ->assertValidRequest()
-            ->assertValidResponse(200);
-
-    }
 
 }

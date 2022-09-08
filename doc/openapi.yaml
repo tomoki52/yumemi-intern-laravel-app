@@ -17,10 +17,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
         '201':
           description: Created
         '400':
@@ -62,6 +58,8 @@ paths:
                 required:
                   - token
               examples: {}
+        '201':
+          description: Created
         '400':
           description: Bad Request
         '401':
