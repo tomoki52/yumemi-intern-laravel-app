@@ -22,8 +22,8 @@ class UserControllerTest extends TestCase
     {
         Spectator::using('openapi.yaml');
         $test_data = [
-            'name' => 'sample',
-            'email' => 'sample@example.com',
+            'name' => 'k_nakano',
+            'email' => 'k_nakano@example.com',
             'password' => 'password',
             'profile' => 'sample profile',
         ];
