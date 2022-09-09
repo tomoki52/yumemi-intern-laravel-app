@@ -60,7 +60,6 @@ class UserControllerTest extends TestCase
 
         $response
             ->assertValidRequest()
-            ->assertSee('token')
             ->assertValidResponse(ResponseCode::HTTP_OK);
 
 
