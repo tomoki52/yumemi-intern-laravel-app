@@ -13,7 +13,7 @@
 | [migrations](migrations.md) | 3 |  | BASE TABLE |
 | [password_resets](password_resets.md) | 3 |  | BASE TABLE |
 | [personal_access_tokens](personal_access_tokens.md) | 10 |  | BASE TABLE |
-| [users](users.md) | 8 |  | BASE TABLE |
+| [users](users.md) | 9 |  | BASE TABLE |
 
 ## Relations
 
