@@ -8,15 +8,15 @@
 ```sql
 CREATE TABLE `companies` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `profile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_enable_interview` tinyint(1) NOT NULL,
-  `enable_interview_datetime` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` datetime NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '企業名',
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'メールアドレス',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'パスワード',
+  `profile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'プロフィール',
+  `is_enable_interview` tinyint(1) NOT NULL DEFAULT '0' COMMENT '面談可能か',
+  `enable_interview_datetime` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '面談可能日時',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
+  `deleted_at` datetime DEFAULT NULL COMMENT '削除日時',
   PRIMARY KEY (`id`),
   UNIQUE KEY `companies_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
@@ -29,15 +29,15 @@ CREATE TABLE `companies` (
 | Name | Type | Default | Nullable | Extra Definition | Children | Parents | Comment |
 | ---- | ---- | ------- | -------- | ---------------- | -------- | ------- | ------- |
 | id | bigint unsigned |  | false | auto_increment | [favorite_companies](favorite_companies.md) [favorite_users](favorite_users.md) [interviews](interviews.md) [messages](messages.md) |  |  |
-| name | varchar(255) |  | false |  |  |  |  |
-| email | varchar(255) |  | false |  |  |  |  |
-| password | varchar(255) |  | false |  |  |  |  |
-| profile | varchar(255) |  | false |  |  |  |  |
-| is_enable_interview | tinyint(1) |  | false |  |  |  |  |
-| enable_interview_datetime | text |  | false |  |  |  |  |
-| created_at | timestamp |  | true |  |  |  |  |
-| updated_at | timestamp |  | true |  |  |  |  |
-| deleted_at | datetime |  | false |  |  |  |  |
+| name | varchar(255) |  | false |  |  |  | 企業名 |
+| email | varchar(255) |  | false |  |  |  | メールアドレス |
+| password | varchar(255) |  | false |  |  |  | パスワード |
+| profile | varchar(255) |  | false |  |  |  | プロフィール |
+| is_enable_interview | tinyint(1) | 0 | false |  |  |  | 面談可能か |
+| enable_interview_datetime | text |  | false |  |  |  | 面談可能日時 |
+| created_at | datetime | CURRENT_TIMESTAMP | false | DEFAULT_GENERATED |  |  | 作成日時 |
+| updated_at | datetime | CURRENT_TIMESTAMP | false | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |  |  | 更新日時 |
+| deleted_at | datetime |  | true |  |  |  | 削除日時 |
 
 ## Constraints
 

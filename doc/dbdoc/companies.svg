@@ -40,10 +40,10 @@
 <text text-anchor="start" x="756.514" y="-146.9" font-family="Arial" font-size="14.00" fill="#666666">[text]</text>
 <polygon fill="none" stroke="#000000" points="579.5,-105.5 579.5,-135.5 793.5,-135.5 793.5,-105.5 579.5,-105.5"/>
 <text text-anchor="start" x="586.5" y="-116.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="656.528" y="-116.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="656.528" y="-116.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="579.5,-75.5 579.5,-105.5 793.5,-105.5 793.5,-75.5 579.5,-75.5"/>
 <text text-anchor="start" x="586.5" y="-86.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="660.4326" y="-86.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="660.4326" y="-86.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="579.5,-45.5 579.5,-75.5 793.5,-75.5 793.5,-45.5 579.5,-45.5"/>
 <text text-anchor="start" x="586.5" y="-56.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
 <text text-anchor="start" x="655.7566" y="-56.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
@@ -68,10 +68,10 @@
 <text text-anchor="start" x="129.8534" y="-636.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint unsigned]</text>
 <polygon fill="none" stroke="#000000" points="43.5,-595.5 43.5,-625.5 310.5,-625.5 310.5,-595.5 43.5,-595.5"/>
 <text text-anchor="start" x="50.5" y="-606.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="120.528" y="-606.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="120.528" y="-606.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="43.5,-565.5 43.5,-595.5 310.5,-595.5 310.5,-565.5 43.5,-565.5"/>
 <text text-anchor="start" x="50.5" y="-576.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="124.4326" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="124.4326" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="43.5,-535.5 43.5,-565.5 310.5,-565.5 310.5,-535.5 43.5,-535.5"/>
 <text text-anchor="start" x="50.5" y="-546.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
 <text text-anchor="start" x="119.7566" y="-546.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
@@ -102,10 +102,10 @@
 <text text-anchor="start" x="471.2882" y="-636.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint unsigned]</text>
 <polygon fill="none" stroke="#000000" points="414.5,-595.5 414.5,-625.5 638.5,-625.5 638.5,-595.5 414.5,-595.5"/>
 <text text-anchor="start" x="421.5" y="-606.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="491.528" y="-606.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="491.528" y="-606.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="414.5,-565.5 414.5,-595.5 638.5,-595.5 638.5,-565.5 414.5,-565.5"/>
 <text text-anchor="start" x="421.5" y="-576.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="495.4326" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="495.4326" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="414.5,-535.5 414.5,-565.5 638.5,-565.5 638.5,-535.5 414.5,-535.5"/>
 <text text-anchor="start" x="421.5" y="-546.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
 <text text-anchor="start" x="490.7566" y="-546.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
@@ -132,7 +132,7 @@
 <text text-anchor="start" x="750.5" y="-696.9" font-family="Arial" font-size="14.00" fill="#000000">interview_datetime </text>
 <text text-anchor="start" x="871.0708" y="-696.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="743.5,-655.5 743.5,-685.5 948.5,-685.5 948.5,-655.5 743.5,-655.5"/>
-<text text-anchor="start" x="750.3212" y="-666.9" font-family="Arial" font-size="14.00" fill="#000000">interivew_status </text>
+<text text-anchor="start" x="750.3212" y="-666.9" font-family="Arial" font-size="14.00" fill="#000000">interview_status </text>
 <text text-anchor="start" x="854.5596" y="-666.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 <polygon fill="none" stroke="#000000" points="743.5,-625.5 743.5,-655.5 948.5,-655.5 948.5,-625.5 743.5,-625.5"/>
 <text text-anchor="start" x="750.5" y="-636.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
@@ -142,10 +142,10 @@
 <text text-anchor="start" x="829.8534" y="-606.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint unsigned]</text>
 <polygon fill="none" stroke="#000000" points="743.5,-565.5 743.5,-595.5 948.5,-595.5 948.5,-565.5 743.5,-565.5"/>
 <text text-anchor="start" x="750.5" y="-576.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="820.528" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="820.528" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="743.5,-535.5 743.5,-565.5 948.5,-565.5 948.5,-535.5 743.5,-535.5"/>
 <text text-anchor="start" x="750.5" y="-546.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="824.4326" y="-546.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="824.4326" y="-546.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="743.5,-505.5 743.5,-535.5 948.5,-535.5 948.5,-505.5 743.5,-505.5"/>
 <text text-anchor="start" x="750.5" y="-516.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
 <text text-anchor="start" x="819.7566" y="-516.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
@@ -182,10 +182,10 @@
 <text text-anchor="start" x="1138.7139" y="-606.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint unsigned]</text>
 <polygon fill="none" stroke="#000000" points="1052.5,-565.5 1052.5,-595.5 1247.5,-595.5 1247.5,-565.5 1052.5,-565.5"/>
 <text text-anchor="start" x="1059.5" y="-576.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="1129.528" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="1129.528" y="-576.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="1052.5,-535.5 1052.5,-565.5 1247.5,-565.5 1247.5,-535.5 1052.5,-535.5"/>
 <text text-anchor="start" x="1059.5" y="-546.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="1133.4326" y="-546.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp]</text>
+<text text-anchor="start" x="1133.4326" y="-546.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>
 <polygon fill="none" stroke="#000000" points="1052.5,-505.5 1052.5,-535.5 1247.5,-535.5 1247.5,-505.5 1052.5,-505.5"/>
 <text text-anchor="start" x="1059.5" y="-516.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
 <text text-anchor="start" x="1128.7566" y="-516.9" font-family="Arial" font-size="14.00" fill="#666666">[datetime]</text>

@@ -10,9 +10,9 @@ CREATE TABLE `favorite_users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `company_id` bigint unsigned NOT NULL,
   `user_id` bigint unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '作成日時',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
+  `deleted_at` datetime DEFAULT NULL COMMENT '削除日時',
   PRIMARY KEY (`id`),
   KEY `favorite_users_company_id_foreign` (`company_id`),
   KEY `favorite_users_user_id_foreign` (`user_id`),
@@ -30,9 +30,9 @@ CREATE TABLE `favorite_users` (
 | id | bigint unsigned |  | false | auto_increment |  |  |  |
 | company_id | bigint unsigned |  | false |  |  | [companies](companies.md) |  |
 | user_id | bigint unsigned |  | false |  |  | [users](users.md) |  |
-| created_at | timestamp |  | true |  |  |  |  |
-| updated_at | timestamp |  | true |  |  |  |  |
-| deleted_at | datetime |  | false |  |  |  |  |
+| created_at | datetime | CURRENT_TIMESTAMP | false | DEFAULT_GENERATED |  |  | 作成日時 |
+| updated_at | datetime | CURRENT_TIMESTAMP | false | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |  |  | 更新日時 |
+| deleted_at | datetime |  | true |  |  |  | 削除日時 |
 
 ## Constraints
 
