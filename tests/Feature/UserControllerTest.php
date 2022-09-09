@@ -35,6 +35,7 @@ class UserControllerTest extends TestCase
 
         $response
             ->assertValidRequest()
+            ->assertExactJson([])
             ->assertValidResponse(ResponseCode::HTTP_OK);
     }
 
@@ -56,13 +57,12 @@ class UserControllerTest extends TestCase
         $this->postJson('/api/user', $test_create_data);
 
         $response = $this->postJson('/api/user/login', $test_login_data);
+
         $response
             ->assertValidRequest()
+            ->assertSee('token')
             ->assertValidResponse(ResponseCode::HTTP_OK);
 
 
     }
-
-
-
 }
