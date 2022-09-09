@@ -13,6 +13,7 @@ CREATE TABLE `companies` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `profile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_enable_interview` tinyint(1) NOT NULL,
+  `enable_interview_datetime` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` datetime NOT NULL,
@@ -33,6 +34,7 @@ CREATE TABLE `companies` (
 | password | varchar(255) |  | false |  |  |  |  |
 | profile | varchar(255) |  | false |  |  |  |  |
 | is_enable_interview | tinyint(1) |  | false |  |  |  |  |
+| enable_interview_datetime | text |  | false |  |  |  |  |
 | created_at | timestamp |  | true |  |  |  |  |
 | updated_at | timestamp |  | true |  |  |  |  |
 | deleted_at | datetime |  | false |  |  |  |  |

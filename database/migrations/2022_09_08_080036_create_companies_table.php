@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('profile');
             $table->boolean('is_enable_interview');
-
+            $table->text('enable_interview_datetime');
             $table->timestamps();
             $table->dateTime('deleted_at');
         });

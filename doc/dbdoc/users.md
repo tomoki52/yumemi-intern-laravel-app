@@ -12,13 +12,13 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `profile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `profile` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=[Redacted by tbls] DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 
 </details>
@@ -32,7 +32,7 @@ CREATE TABLE `users` (
 | email | varchar(255) |  | false |  |  |  |  |
 | email_verified_at | timestamp |  | true |  |  |  |  |
 | password | varchar(255) |  | false |  |  |  |  |
-| profile | varchar(255) |  | false |  |  |  |  |
+| profile | text |  | false |  |  |  |  |
 | remember_token | varchar(100) |  | true |  |  |  |  |
 | created_at | timestamp |  | true |  |  |  |  |
 | updated_at | timestamp |  | true |  |  |  |  |

@@ -4,7 +4,7 @@
 
 | Name | Columns | Comment | Type |
 | ---- | ------- | ------- | ---- |
-| [companies](companies.md) | 9 |  | BASE TABLE |
+| [companies](companies.md) | 10 |  | BASE TABLE |
 | [failed_jobs](failed_jobs.md) | 7 |  | BASE TABLE |
 | [favorite_companies](favorite_companies.md) | 6 |  | BASE TABLE |
 | [favorite_users](favorite_users.md) | 6 |  | BASE TABLE |

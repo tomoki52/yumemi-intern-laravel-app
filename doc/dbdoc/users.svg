@@ -34,7 +34,7 @@
 <text text-anchor="start" x="652.2882" y="-176.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 <polygon fill="none" stroke="#000000" points="581.5,-135.5 581.5,-165.5 791.5,-165.5 791.5,-135.5 581.5,-135.5"/>
 <text text-anchor="start" x="588.5" y="-146.9" font-family="Arial" font-size="14.00" fill="#000000">profile </text>
-<text text-anchor="start" x="630.5028" y="-146.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
+<text text-anchor="start" x="630.5028" y="-146.9" font-family="Arial" font-size="14.00" fill="#666666">[text]</text>
 <polygon fill="none" stroke="#000000" points="581.5,-105.5 581.5,-135.5 791.5,-135.5 791.5,-105.5 581.5,-105.5"/>
 <text text-anchor="start" x="588.0982" y="-116.9" font-family="Arial" font-size="14.00" fill="#000000">remember_token </text>
 <text text-anchor="start" x="697.7826" y="-116.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(100)]</text>
