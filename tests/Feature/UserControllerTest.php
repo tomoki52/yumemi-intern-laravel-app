@@ -21,17 +21,16 @@ class UserControllerTest extends TestCase
             'name' => 'k_nakano',
             'email' => 'k_nakano@example.com',
             'password' => 'password',
+            'profile' => 'sample profile',
         ];
         $expected = [
             'name' => 'k_nakano',
             'email' => 'k_nakano@example.com',
+            'profile' => 'sample profile',
         ];
         $response = $this->postJson('/api/user', $test_data);
-        $this->assertDatabaseHas('users', $expected);
-
-
         $response->assertStatus(ResponseCode::HTTP_OK);
-
+        $this->assertDatabaseHas('users', $expected);
     }
 
     public function test_user_login()
@@ -40,6 +39,7 @@ class UserControllerTest extends TestCase
             'name' => 'k_nakano',
             'email' => 'k_nakano@example.com',
             'password' => 'password',
+            'profile' => 'sample profile',
         ];
         $test_login_data = [
             'email' => 'k_nakano@example.com',
@@ -48,8 +48,5 @@ class UserControllerTest extends TestCase
         $this->postJson('/api/user', $test_data);
         $response = $this->postJson('/api/user/login', $test_login_data);
         $response->assertStatus(ResponseCode::HTTP_OK);
-
-
     }
-
 }
