@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Interview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response as ResponseCode;
@@ -46,5 +47,11 @@ class CompanyController extends Controller
                 ResponseCode::HTTP_UNAUTHORIZED);
         }
 
+    }
+    public function getInterview(Request $request){
+
+        $interview = Interview::where('company_id',$request->company_id)->first();
+        return response()->json(
+            $interview,ResponseCode::HTTP_OK);
     }
 }
