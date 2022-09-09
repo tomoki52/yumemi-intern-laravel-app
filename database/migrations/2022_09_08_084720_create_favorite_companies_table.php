@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('favorite_companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('ユーザー名');
-            $table->string('email')->unique()->comment('メールアドレス');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->comment('パスワード');
-            $table->text('profile')->comment('プロフィール');
-            $table->rememberToken();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('company_id')->constrained();
             $table->dateTime('created_at')->useCurrent()->comment('作成日時');
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate()->comment('更新日時');
             $table->dateTime('deleted_at')->nullable()->default(null)->comment('削除日時');
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('favorite_companies');
     }
 };

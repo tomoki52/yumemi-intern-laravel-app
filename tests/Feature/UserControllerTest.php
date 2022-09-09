@@ -22,14 +22,18 @@ class UserControllerTest extends TestCase
     {
         Spectator::using('openapi.yaml');
         $test_data = [
-            'name' => 'sample',
-            'email' => 'sample@example.com',
+            'name' => 'k_nakano',
+            'email' => 'k_nakano@example.com',
             'password' => 'password',
+            'profile' => 'sample profile',
         ];
         $expected = [
-            'name' => 'sample',
-            'email' => 'sample@example.com',
+
+            'name' => 'k_nakano',
+            'email' => 'k_nakano@example.com',
+            'profile' => 'sample profile',
         ];
+
         $response = $this->postJson('/api/user', $test_data);
         $this->assertDatabaseHas('users', $expected);
 
@@ -47,6 +51,7 @@ class UserControllerTest extends TestCase
             'name' => 't_konishi',
             'email' => 't_konishi@example.com',
             'password' => 'password',
+            'profile' => 'sample profile',
         ];
 
         $test_login_data = [
@@ -57,11 +62,8 @@ class UserControllerTest extends TestCase
         $this->postJson('/api/user', $test_create_data);
 
         $response = $this->postJson('/api/user/login', $test_login_data);
-
         $response
             ->assertValidRequest()
             ->assertValidResponse(ResponseCode::HTTP_OK);
-
-
     }
 }

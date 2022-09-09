@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('ユーザー名');
+            $table->string('name')->comment('企業名');
             $table->string('email')->unique()->comment('メールアドレス');
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->comment('パスワード');
-            $table->text('profile')->comment('プロフィール');
-            $table->rememberToken();
+            $table->string('profile')->comment('プロフィール');
+            $table->boolean('is_enable_interview')->default(false)->comment('面談可能か');
+            $table->text('enable_interview_datetime')->nullable()->default(null)->comment('面談可能日時');
             $table->dateTime('created_at')->useCurrent()->comment('作成日時');
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate()->comment('更新日時');
             $table->dateTime('deleted_at')->nullable()->default(null)->comment('削除日時');
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('companies');
     }
 };

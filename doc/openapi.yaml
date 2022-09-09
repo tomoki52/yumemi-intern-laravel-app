@@ -100,7 +100,11 @@ components:
         password:
           type: string
           description: パスワード
+        profile:
+          type: string
+          description: プロフィール
       required:
         - name
         - email
         - password
+        - profile
