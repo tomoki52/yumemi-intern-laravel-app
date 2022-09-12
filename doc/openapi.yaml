@@ -85,6 +85,84 @@ paths:
               required:
                 - email
                 - password
+  /api/company:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-company
+    post:
+      summary: ''
+      operationId: post-api-company
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+  /api/company/login:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-company-login
+    post:
+      summary: ''
+      operationId: post-api-company-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: APIトークン
+                required:
+                  - token
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: メールアドレス
+                password:
+                  type: string
+                  description: パスワード
+              required:
+                - email
+                - password
 components:
   schemas:
     User:
@@ -103,6 +181,30 @@ components:
         profile:
           type: string
           description: プロフィール
+      required:
+        - name
+        - email
+        - password
+        - profile
+    Company:
+      title: Company
+      x-stoplight:
+        id: wt3480whfyk74
+      type: object
+      properties:
+        name:
+          type: string
+          description: 企業名
+        email:
+          type: string
+          description: メールアドレス
+        password:
+          type: string
+          description: パスワード
+        profile:
+          type: string
+          description: |
+            プロフィール
       required:
         - name
         - email

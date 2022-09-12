@@ -2,15 +2,14 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Spectator\Spectator;
 use Symfony\Component\HttpFoundation\Response as ResponseCode;
 use Tests\TestCase;
-use Spectator\Spectator;
 
-class UserControllerTest extends TestCase
+class CompanyControllerTest extends TestCase
 {
-
     /**
      * A basic feature test example.
      *
@@ -22,23 +21,23 @@ class UserControllerTest extends TestCase
         parent::setUp();
         Spectator::using('openapi.yaml');
     }
-    public function test_user_create()
+    public function test_company_create()
     {
         $test_data = [
-            'name' => 'k_nakano',
-            'email' => 'k_nakano@example.com',
+            'name' => 'yumemi',
+            'email' => 'yumemi@example.com',
             'password' => 'password',
             'profile' => 'sample profile',
         ];
         $expected = [
 
-            'name' => 'k_nakano',
-            'email' => 'k_nakano@example.com',
+            'name' => 'yumemi',
+            'email' => 'yumemi@example.com',
             'profile' => 'sample profile',
         ];
 
-        $response = $this->postJson('/api/user', $test_data);
-        $this->assertDatabaseHas('users', $expected);
+        $response = $this->postJson('/api/company', $test_data);
+        $this->assertDatabaseHas('companies', $expected);
 
         $response
             ->assertValidRequest()
@@ -46,23 +45,23 @@ class UserControllerTest extends TestCase
             ->assertValidResponse(ResponseCode::HTTP_OK);
     }
 
-    public function test_user_login()
+    public function test_company_login()
     {
         $test_create_data = [
-            'name' => 't_konishi',
-            'email' => 't_konishi@example.com',
+            'name' => 'yumemi',
+            'email' => 'yumemi@example.com',
             'password' => 'password',
             'profile' => 'sample profile',
         ];
 
         $test_login_data = [
-            'email' => 't_konishi@example.com',
+            'email' => 'yumemi@example.com',
             'password' => 'password',
         ];
 
-        $this->postJson('/api/user', $test_create_data);
+        $this->postJson('/api/company', $test_create_data);
 
-        $response = $this->postJson('/api/user/login', $test_login_data);
+        $response = $this->postJson('/api/company/login', $test_login_data);
         $response
             ->assertValidRequest()
             ->assertValidResponse(ResponseCode::HTTP_OK);
