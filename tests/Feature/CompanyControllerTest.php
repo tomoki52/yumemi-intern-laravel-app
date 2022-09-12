@@ -1,7 +1,9 @@
 <?php
 
 namespace Tests\Feature;
+
 namespace App\Http\Controllers;
+
 use App\Models\Company;
 use App\Models\Interview;
 use App\Models\User;
@@ -19,7 +21,7 @@ class CompanyControllerTest extends TestCase
      * @return void
      */
     use RefreshDatabase;
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
         Spectator::using('openapi.yaml');
@@ -104,19 +106,20 @@ class CompanyControllerTest extends TestCase
             'profile' => 'sample profile',
         ];
         $this->postJson('/api/user', $test_user_data);
-        $user_id = User::where('email',$test_user_data['email'])->first()->id;
-        $company_id = Company::where('email',$test_company_data['email'])->first()->id;
+        $user_id = User::where('email', $test_user_data['email'])->first()->id;
+        $company_id = Company::where('email', $test_company_data['email'])->first()->id;
         Interview::create([
             'user_id'=>$user_id,
             'company_id'=>$company_id,
         ]);
-        $response = $this->getJson('/api/company/interview',
-                 [
-                    'Authorization' => 'Bearer '.$token,
-                ]);
+        $response = $this->getJson(
+            '/api/company/interview',
+            [
+               'Authorization' => 'Bearer '.$token,
+                ]
+        );
         $response
             ->assertExactJson($expected)
             ->assertStatus(ResponseCode::HTTP_OK);
     }
-
 }
