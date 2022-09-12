@@ -18,7 +18,7 @@ class CompanyControllerTest extends TestCase
      *
      * @return void
      */
-    use RefreshDatabase;
+    //use RefreshDatabase;
     public function setUp() :void
     {
         parent::setUp();
@@ -85,7 +85,6 @@ class CompanyControllerTest extends TestCase
             'password' => 'password',
         ];
         $expected = [
-
             [
 
                 'interview_datetime'=>null,

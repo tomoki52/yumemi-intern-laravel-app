@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +24,4 @@ Route::post('/company/login','\App\Http\Controllers\CompanyController@loginCompa
     ->name('login');
 Route::middleware('auth:sanctum')
     ->get('/company/interview','\App\Http\Controllers\CompanyController@getInterview');
+

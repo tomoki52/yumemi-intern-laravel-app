@@ -49,24 +49,37 @@ class CompanyController extends Controller
         }
 
     }
-    public function getInterview(Request $request){
+    public function getInterview(Request $request)
+    {
         $company = $request->user();
-        $interview_all = Interview::where('company_id',$company->id)->get();
-        $response=[];
-        foreach ($interview_all as $interview){
+        if ($request->has('interview_id')) {
+            $interview = Interview::where('id', $request->interview_id)->first();
             $user_id = $interview->user_id;
-            $user_name = User::where('id',$user_id)->first()->name;
-            $datetime = $interview->interview_datetime;
-            $status = $interview->interview_status;
-
-            $response[]= [
+            $user_name = User::where('id', $user_id)->first()->name;
+            return response()->json([
                 'user_name'=>$user_name,
-                'interview_datetime'=>$datetime,
-                'interview_status'=>$status,
-            ];
+                'interview_datetime' => $interview->datetime,
+                'interview_status' => $interview->status,
+            ],ResponseCode::HTTP_OK);
+        } else {
+
+            $interview_all = Interview::where('company_id', $company->id)->get();
+            $response = [];
+            foreach ($interview_all as $interview) {
+                $user_id = $interview->user_id;
+                $user_name = User::where('id', $user_id)->first()->name;
+                $datetime = $interview->interview_datetime;
+                $status = $interview->interview_status;
+
+                $response[] = [
+                    'user_name' => $user_name,
+                    'interview_datetime' => $datetime,
+                    'interview_status' => $status,
+                ];
+            }
+
+
+            return response()->json($response, ResponseCode::HTTP_OK);
         }
-
-
-        return response()->json($response,ResponseCode::HTTP_OK);
     }
 }
