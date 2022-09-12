@@ -29,9 +29,7 @@ class CompanyControllerTest extends TestCase
     }
     public function test_company_create()
     {
-        $test_data = [
-            'name' => 'ex_company',
-            'email' => 'ex_company@example.com',
+        $test_data = ['name' => 'ex_company', 'email' => 'ex_company@example.com',
             'password' => 'password',
             'profile' => 'sample profile',
         ];
