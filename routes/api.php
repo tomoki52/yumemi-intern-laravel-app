@@ -18,8 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/first', \App\Http\Controllers\GetFirstController::class);
-Route::get('/company', \App\Http\Controllers\GetCompanyController::class);
 Route::post('/user', '\App\Http\Controllers\UserController@createUser');
 Route::post('/user/login','\App\Http\Controllers\UserController@loginUser');
 Route::post('/company', '\App\Http\Controllers\CompanyController@createCompany');
