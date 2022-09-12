@@ -16,10 +16,13 @@ class CompanyControllerTest extends TestCase
      * @return void
      */
     use RefreshDatabase;
-
+    public function setUp() :void
+    {
+        parent::setUp();
+        Spectator::using('openapi.yaml');
+    }
     public function test_company_create()
     {
-        Spectator::using('openapi.yaml');
         $test_data = [
             'name' => 'yumemi',
             'email' => 'yumemi@example.com',
@@ -44,8 +47,6 @@ class CompanyControllerTest extends TestCase
 
     public function test_company_login()
     {
-        Spectator::using('openapi.yaml');
-
         $test_create_data = [
             'name' => 'yumemi',
             'email' => 'yumemi@example.com',
