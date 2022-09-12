@@ -19,8 +19,10 @@ jobs:
 
       - name: composer install
         run: docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/var/www/html -w /var/www/html laravelsail/php81-composer:latest composer install --ignore-platform-reqs
+        
       - name: php-cs-fixer
-        run: ./vendor/bin/sail ./vendor/bin/php-cs-fixer fix ./src --dry-run
+        run: ./vendor/bin/sail php ./vendor/bin/php-cs-fixer fix  --dry-run .
+
       - name: start mysql
         run: ./vendor/bin/sail up -d mysql
 

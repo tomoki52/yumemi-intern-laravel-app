@@ -27,17 +27,11 @@ class CompanyControllerTest extends TestCase
         Spectator::using('openapi.yaml');
         $this->withoutExceptionHandling();
     }
-    public function test_company_create()
-    {
-        $test_data = ['name' => 'ex_company', 'email' => 'ex_company@example.com',
-            'password' => 'password',
+    public function test_company_create(){
+        $test_data = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'password' => 'password',
             'profile' => 'sample profile',
         ];
-        $expected = [
-
-            'name' => 'ex_company',
-            'email' => 'ex_company@example.com',
-            'profile' => 'sample profile',
+        $expected = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'profile' => 'sample profile',
         ];
 
         $response = $this->postJson('/api/company', $test_data);
