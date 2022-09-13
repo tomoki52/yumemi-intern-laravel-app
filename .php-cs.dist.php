@@ -13,6 +13,7 @@ return $config
         // If you want to overwrite default rules
         // add rules here.
         'declare_strict_types' => false,
+        '@PSR12' => true,
 //・・・
     ])
     ->setUsingCache(false)
