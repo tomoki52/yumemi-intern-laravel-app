@@ -1,7 +1,9 @@
 <?php
 
 namespace Tests\Feature;
+
 namespace App\Http\Controllers;
+
 use App\Models\Company;
 use App\Models\Interview;
 use App\Models\User;
@@ -19,7 +21,7 @@ class CompanyControllerTest extends TestCase
      * @return void
      */
     use RefreshDatabase;
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
         Spectator::using('openapi.yaml');
@@ -27,17 +29,10 @@ class CompanyControllerTest extends TestCase
     }
     public function test_company_create()
     {
-        $test_data = [
-            'name' => 'ex_company',
-            'email' => 'ex_company@example.com',
-            'password' => 'password',
+        $test_data = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'password' => 'password',
             'profile' => 'sample profile',
         ];
-        $expected = [
-
-            'name' => 'ex_company',
-            'email' => 'ex_company@example.com',
-            'profile' => 'sample profile',
+        $expected = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'profile' => 'sample profile',
         ];
 
         $response = $this->postJson('/api/company', $test_data);
@@ -104,19 +99,20 @@ class CompanyControllerTest extends TestCase
             'profile' => 'sample profile',
         ];
         $this->postJson('/api/user', $test_user_data);
-        $user_id = User::where('email',$test_user_data['email'])->first()->id;
-        $company_id = Company::where('email',$test_company_data['email'])->first()->id;
+        $user_id = User::where('email', $test_user_data['email'])->first()->id;
+        $company_id = Company::where('email', $test_company_data['email'])->first()->id;
         Interview::create([
             'user_id'=>$user_id,
             'company_id'=>$company_id,
         ]);
-        $response = $this->getJson('/api/company/interview',
-                 [
-                    'Authorization' => 'Bearer '.$token,
-                ]);
+        $response = $this->getJson(
+            '/api/company/interview',
+            [
+               'Authorization' => 'Bearer '.$token,
+                ]
+        );
         $response
             ->assertExactJson($expected)
             ->assertStatus(ResponseCode::HTTP_OK);
     }
-
 }

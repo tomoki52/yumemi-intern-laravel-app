@@ -10,14 +10,13 @@ use Spectator\Spectator;
 
 class UserControllerTest extends TestCase
 {
-
     /**
      * A basic feature test example.
      *
      * @return void
      */
     use RefreshDatabase;
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
         Spectator::using('openapi.yaml');

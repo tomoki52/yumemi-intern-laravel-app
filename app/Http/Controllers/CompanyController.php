@@ -13,49 +13,59 @@ use Symfony\Component\HttpFoundation\Response as ResponseCode;
 class CompanyController extends Controller
 {
     //
-    public function createCompany(Request $request){
+    public function createCompany(Request $request)
+    {
         $company = Company::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'profile' => $request->input('profile'),
         ]);
-        return response()->json([
+        return response()->json(
+            [
 
         ],
-            ResponseCode::HTTP_OK);
+            ResponseCode::HTTP_OK
+        );
     }
-    public function  loginCompany(Request $request){
-        $company = Company::where('email',$request->email)->first();
-        if(empty($company)) {
-            return response()->json([
+    public function loginCompany(Request $request)
+    {
+        $company = Company::where('email', $request->email)->first();
+        if (empty($company)) {
+            return response()->json(
+                [
 
             ],
-                ResponseCode::HTTP_UNAUTHORIZED);
+                ResponseCode::HTTP_UNAUTHORIZED
+            );
         }
 
-        if(Hash::check($request->password,$company->password)){
+        if (Hash::check($request->password, $company->password)) {
             $token = $company->createToken($request->email);
-            return response()->json([
+            return response()->json(
+                [
 
                 'token' => $token->plainTextToken,
             ],
-                ResponseCode::HTTP_OK);
-        }else{
-            return response()->json([
+                ResponseCode::HTTP_OK
+            );
+        } else {
+            return response()->json(
+                [
 
             ],
-                ResponseCode::HTTP_UNAUTHORIZED);
+                ResponseCode::HTTP_UNAUTHORIZED
+            );
         }
-
     }
-    public function getInterview(Request $request){
+    public function getInterview(Request $request)
+    {
         $company = $request->user();
-        $interview_all = Interview::where('company_id',$company->id)->get();
+        $interview_all = Interview::where('company_id', $company->id)->get();
         $response=[];
-        foreach ($interview_all as $interview){
+        foreach ($interview_all as $interview) {
             $user_id = $interview->user_id;
-            $user_name = User::where('id',$user_id)->first()->name;
+            $user_name = User::where('id', $user_id)->first()->name;
             $datetime = $interview->interview_datetime;
             $status = $interview->interview_status;
 
@@ -67,6 +77,6 @@ class CompanyController extends Controller
         }
 
 
-        return response()->json($response,ResponseCode::HTTP_OK);
+        return response()->json($response, ResponseCode::HTTP_OK);
     }
 }
