@@ -58,18 +58,17 @@ class CompanyController extends Controller
             );
         }
     }
-    public function getInterview(Request $request)
+    public function getInterview(Request $request,$interview_id=null)
     {
         $company = $request->user();
-        if ($request->has('interview_id')) {
-            $interview = Interview::where('id', $request->interview_id)->first();
+        if ($interview_id) {
+            $interview = Interview::where('id', $interview_id)->first();
             $user_id = $interview->user_id;
             $user_name = User::where('id', $user_id)->first()->name;
             return response()->json([
-
                 'user_name'=>$user_name,
-                'interview_datetime' => $interview->datetime,
-                'interview_status' => $interview->status,
+                'interview_datetime' => $interview->interview_datetime,
+                'interview_status' => $interview->interview_status,
             ],ResponseCode::HTTP_OK);
         } else {
 
