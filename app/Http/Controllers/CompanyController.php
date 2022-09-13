@@ -58,36 +58,37 @@ class CompanyController extends Controller
             );
         }
     }
-    public function getInterview(Request $request, $interview_id=null)
+    public function getInterview(Request $request)
     {
         $company = $request->user();
-        if ($interview_id) {
-            $interview = Interview::where('id', $interview_id)->first();
+
+        $interview_all = Interview::where('company_id', $company->id)->get();
+        $response = [];
+        foreach ($interview_all as $interview) {
             $user_id = $interview->user_id;
             $user_name = User::where('id', $user_id)->first()->name;
-            return response()->json([
-                'user_name'=>$user_name,
-                'interview_datetime' => $interview->interview_datetime,
-                'interview_status' => $interview->interview_status,
-            ], ResponseCode::HTTP_OK);
-        } else {
-            $interview_all = Interview::where('company_id', $company->id)->get();
-            $response = [];
-            foreach ($interview_all as $interview) {
-                $user_id = $interview->user_id;
-                $user_name = User::where('id', $user_id)->first()->name;
-                $datetime = $interview->interview_datetime;
-                $status = $interview->interview_status;
+            $datetime = $interview->interview_datetime;
+            $status = $interview->interview_status;
 
-                $response[] = [
-                    'user_name' => $user_name,
-                    'interview_datetime' => $datetime,
-                    'interview_status' => $status,
-                ];
-            }
-
-
-            return response()->json($response, ResponseCode::HTTP_OK);
+            $response[] = [
+                'user_name' => $user_name,
+                'interview_datetime' => $datetime,
+                'interview_status' => $status,
+            ];
         }
+
+        return response()->json($response, ResponseCode::HTTP_OK);
+    }
+    public function getInterviewDetail(Request $request, $interview_id)
+    {
+        $company = $request->user();
+        $interview = Interview::where('id', $interview_id)->first();
+        $user_id = $interview->user_id;
+        $user_name = User::where('id', $user_id)->first()->name;
+        return response()->json([
+            'user_name'=>$user_name,
+            'interview_datetime' => $interview->interview_datetime,
+            'interview_status' => $interview->interview_status,
+        ], ResponseCode::HTTP_OK);
     }
 }
