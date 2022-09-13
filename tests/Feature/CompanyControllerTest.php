@@ -131,5 +131,15 @@ class CompanyControllerTest extends TestCase
             ->assertValidRequest()
             ->assertExactJson($expected_detail)
             ->assertValidResponse(ResponseCode::HTTP_OK);
+
+        $response=$this->postJson(
+            'api/company/interview/'.$interview_id.'/decision',
+            [
+                'status'=>"確定"
+            ]
+        );
+        $response
+            ->assertValidRequest()
+            ->assertValidResponse(ResponseCode::HTTP_OK);
     }
 }

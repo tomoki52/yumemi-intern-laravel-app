@@ -28,3 +28,6 @@ Route::middleware('auth:sanctum')
 Route::middleware('auth:sanctum')
     ->get('/company/interview/{interview_id}', '\App\Http\Controllers\CompanyController@getInterviewDetail')
     ->where('interview_id', '^[0-9]+');
+Route::middleware('auth:sanctum')
+    ->post('/company/interview/{interview_id}/decision', '\App\Http\Controllers\CompanyController@postInterviewDecision')
+    ->where('interview_id', '^[0-9]+');
