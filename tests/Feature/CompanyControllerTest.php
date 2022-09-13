@@ -21,12 +21,14 @@ class CompanyControllerTest extends TestCase
      * @return void
      */
     use RefreshDatabase;
-    public function setUp(): void{
+    public function setUp(): void
+    {
         parent::setUp();
         Spectator::using('openapi.yaml');
         $this->withoutExceptionHandling();
     }
-    public function test_company_create(){
+    public function test_company_create()
+    {
         $test_data = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'password' => 'password',
             'profile' => 'sample profile',
         ];

@@ -63,9 +63,10 @@ class CompanyController extends Controller
         $company = $request->user();
         $interview_all = Interview::where('company_id', $company->id)->get();
         $response=[];
-        foreach ($interview_all as $interview) {$user_id = $interview->user_id;
+        foreach ($interview_all as $interview) {
+            $user_id = $interview->user_id;
             $user_name = User::where('id', $user_id)->first()->name;
-    $datetime = $interview->interview_datetime;
+            $datetime = $interview->interview_datetime;
             $status = $interview->interview_status;
 
             $response[]= [
