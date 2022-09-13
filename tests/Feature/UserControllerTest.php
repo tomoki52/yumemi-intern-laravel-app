@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Symfony\Component\HttpFoundation\Response as ResponseCode;
 use Tests\TestCase;
 use Spectator\Spectator;
@@ -16,24 +18,27 @@ class UserControllerTest extends TestCase
      * @return void
      */
     use RefreshDatabase;
+    use WithFaker;
+
     public function setUp(): void
     {
         parent::setUp();
         Spectator::using('openapi.yaml');
+
     }
     public function test_user_create()
     {
         $test_data = [
-            'name' => 'k_nakano',
-            'email' => 'k_nakano@example.com',
-            'password' => 'password',
-            'profile' => 'sample profile',
+            'name' => $this->faker->name,
+            'email' => $this->faker->email,
+            'password' => $this->faker->password,
+            'profile' => $this->faker->text,
         ];
-        $expected = [
 
-            'name' => 'k_nakano',
-            'email' => 'k_nakano@example.com',
-            'profile' => 'sample profile',
+        $expected = [
+            'name' => $test_data['name'],
+            'email' => $test_data['email'],
+            'profile' => $test_data['profile'],
         ];
 
         $response = $this->postJson('/api/user', $test_data);
@@ -47,20 +52,11 @@ class UserControllerTest extends TestCase
 
     public function test_user_login()
     {
-        $test_create_data = [
-            'name' => 't_konishi',
-            'email' => 't_konishi@example.com',
-            'password' => 'password',
-            'profile' => 'sample profile',
+        $user = User::factory()->create();
+        $test_login_data=[
+            'email'=>$user->email,
+            'password'=>'password',
         ];
-
-        $test_login_data = [
-            'email' => 't_konishi@example.com',
-            'password' => 'password',
-        ];
-
-        $this->postJson('/api/user', $test_create_data);
-
         $response = $this->postJson('/api/user/login', $test_login_data);
         $response
             ->assertValidRequest()
