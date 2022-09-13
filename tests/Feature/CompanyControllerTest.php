@@ -135,7 +135,7 @@ class CompanyControllerTest extends TestCase
         $response=$this->postJson(
             'api/company/interview/'.$interview_id.'/decision',
             [
-                'status'=>"確定"
+                'status'=>'decision'
             ]
         );
         $response
