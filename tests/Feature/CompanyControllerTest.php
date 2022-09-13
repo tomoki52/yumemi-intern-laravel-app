@@ -21,8 +21,7 @@ class CompanyControllerTest extends TestCase
      * @return void
      */
     use RefreshDatabase;
-    public function setUp(): void
-    {
+    public function setUp(): void{
         parent::setUp();
         Spectator::using('openapi.yaml');
         $this->withoutExceptionHandling();

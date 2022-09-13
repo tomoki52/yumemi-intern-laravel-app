@@ -3,7 +3,8 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude([
         'bootstrap/cache',
         'vendor',
-    ]);
+    ])
+    ->in(__DIR__);
 
 $config = new PhpCsFixer\Config();
 return $config
@@ -14,4 +15,5 @@ return $config
         'declare_strict_types' => false,
 //・・・
     ])
+    ->setUsingCache(false)
     ->setFinder($finder);
