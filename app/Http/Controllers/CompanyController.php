@@ -95,8 +95,8 @@ class CompanyController extends Controller
     {
         $company = $request->user();
         $interview = Interview::where('id', $interview_id)->first();
-        if ($request->input('status')=='decision') {
-            $interview->interview_status='確定';
+        if ($request->input('status')==1) {
+            $interview->interview_status=1;
             $interview->save();
             return response(ResponseCode::HTTP_OK);
         }

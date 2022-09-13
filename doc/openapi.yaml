@@ -264,8 +264,10 @@ paths:
               type: object
               properties:
                 status:
-                  type: string
-                  description: 面談状況
+                  type: integer
+                  description: |-
+                    面談実施状況
+                    1:decision、2:cancel、3:保留、9:error
               required:
                 - status
       parameters:

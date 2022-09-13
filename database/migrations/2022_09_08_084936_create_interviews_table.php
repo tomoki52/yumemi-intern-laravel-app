@@ -15,7 +15,7 @@ return new class () extends Migration {
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
             $table->dateTime('interview_datetime')->nullable()->default(null)->comment('面談実施日時');
-            $table->string('interview_status')->default('未確定')->comment('面談実施状況');
+            $table->integer('interview_status')->default(3)->comment('面談実施状況 1:decision、2:cancel、3:未確定、9:error');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('company_id')->constrained();
             $table->dateTime('created_at')->useCurrent()->comment('作成日時');
