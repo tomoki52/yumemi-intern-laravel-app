@@ -20,15 +20,11 @@ class CompanyControllerTest extends TestCase
      *
      * @return void
      */
+
     use RefreshDatabase;
-    public function setUp(): void
-    {
-        parent::setUp();
-        Spectator::using('openapi.yaml');
-        $this->withoutExceptionHandling();
-    }
     public function test_company_create()
     {
+        Spectator::using('openapi.yaml');
         $test_data = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'password' => 'password',
             'profile' => 'sample profile',
         ];
@@ -46,6 +42,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_company_login()
     {
+        Spectator::using('openapi.yaml');
         $test_create_data = [
             'name' => 'ex_company_login',
             'email' => 'ex_company_login@example.com',
@@ -80,9 +77,7 @@ class CompanyControllerTest extends TestCase
             'password' => 'password',
         ];
         $expected = [
-
             [
-
                 'interview_datetime'=>null,
                 'interview_status'=>'未確定',
                 'user_name'=>'t_konishi',
@@ -105,6 +100,7 @@ class CompanyControllerTest extends TestCase
             'user_id'=>$user_id,
             'company_id'=>$company_id,
         ]);
+
         $response = $this->getJson(
             '/api/company/interview',
             [
@@ -112,7 +108,28 @@ class CompanyControllerTest extends TestCase
                 ]
         );
         $response
+            ->assertValidRequest()
             ->assertExactJson($expected)
-            ->assertStatus(ResponseCode::HTTP_OK);
+            ->assertValidResponse(ResponseCode::HTTP_OK);
+
+        $interview = Interview::where('user_id', $user_id)
+            ->where('company_id', $company_id)->first();
+        $interview_id = $interview->id;
+        $response = $this->getJson(
+            '/api/company/interview/'.$interview_id,
+            [
+                'Authorization' => 'Bearer '.$token,
+            ]
+        );
+        $expected_detail = [
+                'interview_datetime'=>null,
+                'interview_status'=>'未確定',
+                'user_name'=>'t_konishi',
+
+        ];
+        $response
+            ->assertValidRequest()
+            ->assertExactJson($expected_detail)
+            ->assertValidResponse(ResponseCode::HTTP_OK);
     }
 }

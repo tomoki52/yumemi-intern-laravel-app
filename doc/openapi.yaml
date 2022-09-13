@@ -173,21 +173,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  interview_datetime:
-                    type: string
-                    description: 面談日時
-                  interview_status:
-                    type: string
-                    description: 面談状況
-                  user_name:
-                    type: string
-                    description: ユーザー名
-                required:
-                  - interview_datetime
-                  - interview_status
-                  - user_name
+                type: array
+                items:
+                  $ref: '#/components/schemas/Interview'
         '201':
           description: Created
         '400':
@@ -202,14 +190,86 @@ paths:
           description: Internal Server Error
       operationId: get-api-company-interview
       parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: APItoken
-          required: true
+        - $ref: '#/components/parameters/APItoken'
       description: ''
     parameters: []
+  '/api/company/interview/{interview_id}':
+    parameters:
+      - schema:
+          type: string
+        name: interview_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Interview'
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-api-company-interview-interview_id
+      description: ''
+      parameters:
+        - $ref: '#/components/parameters/APItoken'
+  '/api/company/interview/{interview_id}/decision':
+    parameters:
+      - schema:
+          type: string
+        name: interview_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-company-interview-interview_id-decision
+      parameters: []
+    post:
+      summary: ''
+      operationId: post-api-company-interview-interview_id-decision
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                decision:
+                  type: string
+                  description: 面談日時を決定するかどうか
+              required:
+                - decision
+      parameters:
+        - $ref: '#/components/parameters/APItoken'
 components:
   schemas:
     User:
@@ -235,8 +295,6 @@ components:
         - profile
     Company:
       title: Company
-      x-stoplight:
-        id: wt3480whfyk74
       type: object
       properties:
         name:
@@ -250,11 +308,37 @@ components:
           description: パスワード
         profile:
           type: string
-          description: |
-            プロフィール
+          description: プロフィール
       required:
         - name
         - email
         - password
         - profile
+    Interview:
+      title: Interview
+      type: object
+      examples: []
+      properties:
+        user_name:
+          type: string
+          description: ユーザー名
+        interview_datetime:
+          description: 面談日時
+          type: string
+          nullable: true
+        interview_status:
+          type: string
+          description: 面談状況
+      required:
+        - user_name
+        - interview_datetime
+        - interview_status
   securitySchemes: {}
+  parameters:
+    APItoken:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: APItoken

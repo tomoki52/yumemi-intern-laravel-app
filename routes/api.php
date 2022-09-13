@@ -25,3 +25,6 @@ Route::post('/company/login', '\App\Http\Controllers\CompanyController@loginComp
     ->name('login');
 Route::middleware('auth:sanctum')
     ->get('/company/interview', '\App\Http\Controllers\CompanyController@getInterview');
+Route::middleware('auth:sanctum')
+    ->get('/company/interview/{interview_id}', '\App\Http\Controllers\CompanyController@getInterviewDetail')
+    ->where('interview_id', '^[0-9]+');
