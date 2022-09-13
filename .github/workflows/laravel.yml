@@ -32,5 +32,8 @@ jobs:
       - name: migrate
         run: ./vendor/bin/sail artisan migrate
 
+      - name: php-cs-fixer
+        run: ./vendor/bin/sail php ./vendor/bin/php-cs-fixer fix  --dry-run  --config=.php-cs.dist.php --path-mode=intersection .
+
       - name: test
         run: ./vendor/bin/sail test

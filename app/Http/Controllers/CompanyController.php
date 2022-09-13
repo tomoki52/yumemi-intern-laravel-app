@@ -13,41 +13,50 @@ use Symfony\Component\HttpFoundation\Response as ResponseCode;
 class CompanyController extends Controller
 {
     //
-    public function createCompany(Request $request){
+    public function createCompany(Request $request)
+    {
         $company = Company::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'profile' => $request->input('profile'),
         ]);
-        return response()->json([
+        return response()->json(
+            [
 
         ],
-            ResponseCode::HTTP_OK);
+            ResponseCode::HTTP_OK
+        );
     }
-    public function  loginCompany(Request $request){
-        $company = Company::where('email',$request->email)->first();
-        if(empty($company)) {
-            return response()->json([
+    public function loginCompany(Request $request)
+    {
+        $company = Company::where('email', $request->email)->first();
+        if (empty($company)) {
+            return response()->json(
+                [
 
             ],
-                ResponseCode::HTTP_UNAUTHORIZED);
+                ResponseCode::HTTP_UNAUTHORIZED
+            );
         }
 
-        if(Hash::check($request->password,$company->password)){
+        if (Hash::check($request->password, $company->password)) {
             $token = $company->createToken($request->email);
-            return response()->json([
+            return response()->json(
+                [
 
                 'token' => $token->plainTextToken,
             ],
-                ResponseCode::HTTP_OK);
-        }else{
-            return response()->json([
+                ResponseCode::HTTP_OK
+            );
+        } else {
+            return response()->json(
+                [
 
             ],
-                ResponseCode::HTTP_UNAUTHORIZED);
+                ResponseCode::HTTP_UNAUTHORIZED
+            );
         }
-
     }
     public function getInterview(Request $request)
     {
@@ -57,6 +66,7 @@ class CompanyController extends Controller
             $user_id = $interview->user_id;
             $user_name = User::where('id', $user_id)->first()->name;
             return response()->json([
+
                 'user_name'=>$user_name,
                 'interview_datetime' => $interview->datetime,
                 'interview_status' => $interview->status,
@@ -81,5 +91,6 @@ class CompanyController extends Controller
 
             return response()->json($response, ResponseCode::HTTP_OK);
         }
+
     }
 }
