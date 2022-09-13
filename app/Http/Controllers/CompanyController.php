@@ -91,14 +91,14 @@ class CompanyController extends Controller
             'interview_status' => $interview->interview_status,
         ], ResponseCode::HTTP_OK);
     }
-    public function postInterviewDecision(Request $request, $interview_id){
+    public function postInterviewDecision(Request $request, $interview_id)
+    {
         $company = $request->user();
         $interview = Interview::where('id', $interview_id)->first();
-        if($request->input('status')=='確定'){
+        if ($request->input('status')=='確定') {
             $interview->interview_status='確定';
             $interview->save();
             return response(ResponseCode::HTTP_OK);
         }
-
     }
 }
