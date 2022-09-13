@@ -21,12 +21,12 @@ class CompanyControllerTest extends TestCase
      * @return void
      */
 
-    //use RefreshDatabase;
+    use RefreshDatabase;
     public function setUp(): void
     {
         parent::setUp();
-        //Spectator::using('openapi.yaml');
-        $this->withoutExceptionHandling();
+        Spectator::using('openapi.yaml');
+        //$this->withoutExceptionHandling();
     }
     public function test_company_create()
     {
@@ -82,7 +82,6 @@ class CompanyControllerTest extends TestCase
         ];
         $expected = [
             [
-
                 'interview_datetime'=>null,
                 'interview_status'=>'未確定',
                 'user_name'=>'t_konishi',
@@ -105,6 +104,7 @@ class CompanyControllerTest extends TestCase
             'user_id'=>$user_id,
             'company_id'=>$company_id,
         ]);
+
         $response = $this->getJson(
             '/api/company/interview',
             [
@@ -112,7 +112,30 @@ class CompanyControllerTest extends TestCase
                 ]
         );
         $response
-            ->assertExactJson($expected)
-            ->assertStatus(ResponseCode::HTTP_OK);
+            //->assertExactJson($expected)
+            //->assertStatus(ResponseCode::HTTP_OK);
+            ->assertValidRequest()
+            ->assertValidResponse(ResponseCode::HTTP_OK);
+
+        $interview = Interview::where('user_id', $user_id)
+            ->where('company_id', $company_id)->first();
+        $interview_id = $interview->id;
+        $response = $this->getJson(
+            '/api/company/interview/'.$interview_id,
+            [
+                'Authorization' => 'Bearer '.$token,
+            ]
+        );
+        $expected_detail = [
+                'interview_datetime'=>null,
+                'interview_status'=>'未確定',
+                'user_name'=>'t_konishi',
+
+        ];
+        $response
+            //->assertExactJson($expected_detail)
+            //->assertStatus(ResponseCode::HTTP_OK);
+            ->assertValidRequest()
+            ->assertValidResponse(ResponseCode::HTTP_OK);
     }
 }

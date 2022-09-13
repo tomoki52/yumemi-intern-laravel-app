@@ -58,7 +58,7 @@ class CompanyController extends Controller
             );
         }
     }
-    public function getInterview(Request $request,$interview_id=null)
+    public function getInterview(Request $request, $interview_id=null)
     {
         $company = $request->user();
         if ($interview_id) {
@@ -69,9 +69,8 @@ class CompanyController extends Controller
                 'user_name'=>$user_name,
                 'interview_datetime' => $interview->interview_datetime,
                 'interview_status' => $interview->interview_status,
-            ],ResponseCode::HTTP_OK);
+            ], ResponseCode::HTTP_OK);
         } else {
-
             $interview_all = Interview::where('company_id', $company->id)->get();
             $response = [];
             foreach ($interview_all as $interview) {
@@ -90,6 +89,5 @@ class CompanyController extends Controller
 
             return response()->json($response, ResponseCode::HTTP_OK);
         }
-
     }
 }
