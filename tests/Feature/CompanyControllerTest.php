@@ -79,7 +79,7 @@ class CompanyControllerTest extends TestCase
         $expected = [
             [
                 'interview_datetime'=>null,
-                'interview_status'=>'未確定',
+                'interview_status'=>3,
                 'user_name'=>'t_konishi',
             ],
         ];
@@ -123,13 +123,23 @@ class CompanyControllerTest extends TestCase
         );
         $expected_detail = [
                 'interview_datetime'=>null,
-                'interview_status'=>'未確定',
+                'interview_status'=>3,
                 'user_name'=>'t_konishi',
 
         ];
         $response
             ->assertValidRequest()
             ->assertExactJson($expected_detail)
+            ->assertValidResponse(ResponseCode::HTTP_OK);
+
+        $response=$this->postJson(
+            'api/company/interview/'.$interview_id.'/decision',
+            [
+                'status'=>1
+            ]
+        );
+        $response
+            ->assertValidRequest()
             ->assertValidResponse(ResponseCode::HTTP_OK);
     }
 }

@@ -263,11 +263,13 @@ paths:
             schema:
               type: object
               properties:
-                decision:
-                  type: string
-                  description: 面談日時を決定するかどうか
+                status:
+                  type: integer
+                  description: |-
+                    面談実施状況
+                    1:decision、2:cancel、3:保留、9:error
               required:
-                - decision
+                - status
       parameters:
         - $ref: '#/components/parameters/APItoken'
 components:
@@ -331,7 +333,6 @@ components:
           description: 面談状況
       required:
         - user_name
-        - interview_datetime
         - interview_status
   securitySchemes: {}
   parameters:
