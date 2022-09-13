@@ -25,8 +25,8 @@ class CompanyControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        Spectator::using('openapi.yaml');
-        //$this->withoutExceptionHandling();
+        //Spectator::using('openapi.yaml');
+        $this->withoutExceptionHandling();
     }
     public function test_company_create()
     {
@@ -112,9 +112,8 @@ class CompanyControllerTest extends TestCase
                 ]
         );
         $response
-            //->assertExactJson($expected)
-            //->assertStatus(ResponseCode::HTTP_OK);
             ->assertValidRequest()
+            ->assertExactJson($expected)
             ->assertValidResponse(ResponseCode::HTTP_OK);
 
         $interview = Interview::where('user_id', $user_id)
@@ -133,9 +132,8 @@ class CompanyControllerTest extends TestCase
 
         ];
         $response
-            //->assertExactJson($expected_detail)
-            //->assertStatus(ResponseCode::HTTP_OK);
             ->assertValidRequest()
+            ->assertExactJson($expected_detail)
             ->assertValidResponse(ResponseCode::HTTP_OK);
     }
 }
