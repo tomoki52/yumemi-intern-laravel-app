@@ -33,7 +33,7 @@ jobs:
         run: ./vendor/bin/sail artisan migrate
 
       - name: php-cs-fixer
-        run: ./vendor/bin/sail php ./vendor/bin/php-cs-fixer fix  --dry-run  --config=.php-cs.dist .
+        run: ./vendor/bin/sail php ./vendor/bin/php-cs-fixer fix  --dry-run  --config=.php-cs.dist.php .
 
       - name: test
         run: ./vendor/bin/sail test
