@@ -22,13 +22,20 @@ class CompanyControllerTest extends TestCase
      */
 
     use RefreshDatabase;
+    use WithFaker;
     public function test_company_create()
     {
         Spectator::using('openapi.yaml');
-        $test_data = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'password' => 'password',
-            'profile' => 'sample profile',
+        $test_data = [
+            'name' => $this->faker->name,
+            'email' => 'ex_company@example.com',
+            'password' => $this->faker->password,
+            'profile' => $this->faker->text,
         ];
-        $expected = ['name' => 'ex_company', 'email' => 'ex_company@example.com', 'profile' => 'sample profile',
+        $expected = [
+            'name' => $test_data['name'],
+            'email' => $test_data['email'],
+            'profile' => $test_data['profile'],
         ];
 
         $response = $this->postJson('/api/company', $test_data);
@@ -43,19 +50,13 @@ class CompanyControllerTest extends TestCase
     public function test_company_login()
     {
         Spectator::using('openapi.yaml');
-        $test_create_data = [
-            'name' => 'ex_company_login',
-            'email' => 'ex_company_login@example.com',
-            'password' => 'password',
-            'profile' => 'sample profile',
+        $company = Company::factory()->create(
+            ['email' => 'ex_company2@example.com'],
+        );
+        $test_login_data=[
+            'email'=>$company->email,
+            'password'=>'password',
         ];
-
-        $test_login_data = [
-            'email' => 'ex_company_login@example.com',
-            'password' => 'password',
-        ];
-
-        $this->postJson('/api/company', $test_create_data);
 
         $response = $this->postJson('/api/company/login', $test_login_data);
         $response
@@ -65,40 +66,31 @@ class CompanyControllerTest extends TestCase
 
     public function test_company_getInterview()
     {
-        $test_company_data = [
-            'name' => 'yumemi',
-            'email' => 'yumemi@example.com',
-            'password' => 'password',
-            'profile' => 'sample profile',
+        $company = Company::factory()->create(
+            ['email' => 'ex_company@example.com'],
+        );
+        $test_login_data=[
+            'email'=>$company->email,
+            'password'=>'password',
         ];
 
-        $test_login_data = [
-            'email' => 'yumemi@example.com',
-            'password' => 'password',
+        $token = $this->postJson('/api/company/login', $test_login_data)['token'];
+
+        $user = User::factory()->create(
+            ['email'=> 'user@example.com'],
+        );
+        $expected_detail = [
+            'interview_datetime'=>null,
+            'interview_status'=>3,
+            'user_name'=>$user->name,
         ];
         $expected = [
-            [
-                'interview_datetime'=>null,
-                'interview_status'=>3,
-                'user_name'=>'t_konishi',
-            ],
+            $expected_detail
         ];
-        $this->postJson('/api/company', $test_company_data);
-        $token = $this->postJson('/api/company/login', $test_login_data)['token'];
-        print($token);
 
-        $test_user_data = [
-            'name' => 't_konishi',
-            'email' => 't_konishi@example.com',
-            'password' => 'password',
-            'profile' => 'sample profile',
-        ];
-        $this->postJson('/api/user', $test_user_data);
-        $user_id = User::where('email', $test_user_data['email'])->first()->id;
-        $company_id = Company::where('email', $test_company_data['email'])->first()->id;
         Interview::create([
-            'user_id'=>$user_id,
-            'company_id'=>$company_id,
+            'user_id'=>$user->id,
+            'company_id'=>$company->id,
         ]);
 
         $response = $this->getJson(
@@ -112,8 +104,8 @@ class CompanyControllerTest extends TestCase
             ->assertExactJson($expected)
             ->assertValidResponse(ResponseCode::HTTP_OK);
 
-        $interview = Interview::where('user_id', $user_id)
-            ->where('company_id', $company_id)->first();
+        $interview = Interview::where('user_id', $user->id)
+            ->where('company_id', $company->id)->first();
         $interview_id = $interview->id;
         $response = $this->getJson(
             '/api/company/interview/'.$interview_id,
@@ -121,12 +113,7 @@ class CompanyControllerTest extends TestCase
                 'Authorization' => 'Bearer '.$token,
             ]
         );
-        $expected_detail = [
-                'interview_datetime'=>null,
-                'interview_status'=>3,
-                'user_name'=>'t_konishi',
 
-        ];
         $response
             ->assertValidRequest()
             ->assertExactJson($expected_detail)
