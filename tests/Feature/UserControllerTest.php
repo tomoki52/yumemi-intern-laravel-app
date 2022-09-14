@@ -24,7 +24,6 @@ class UserControllerTest extends TestCase
     {
         parent::setUp();
         Spectator::using('openapi.yaml');
-
     }
     public function test_user_create()
     {
