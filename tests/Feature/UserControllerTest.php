@@ -29,7 +29,7 @@ class UserControllerTest extends TestCase
     {
         $test_data = [
             'name' => $this->faker->name,
-            'email' => $this->faker->email,
+            'email' => 'user@example.com',
             'password' => $this->faker->password,
             'profile' => $this->faker->text,
         ];
@@ -51,7 +51,9 @@ class UserControllerTest extends TestCase
 
     public function test_user_login()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create(
+            ['email' => 'user@example.com'],
+        );
         $test_login_data=[
             'email'=>$user->email,
             'password'=>'password',
